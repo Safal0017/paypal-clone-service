@@ -1,0 +1,26 @@
+# Build directories
+target/
+build/
+
+# IDE files
+.idea/
+*.iml
+.vscode/
+
+# Logs and temp files
+*.log
+*.tmp
+logs/
+temp/
+
+# OS artifacts
+.DS_Store
+Thumbs.db
+
+# Maven Wrapper files (optional)
+.mvn/wrapper/maven-wrapper.jar
+
+# Environment and secret files (add your secrets here if any)
+.env
+*.properties
+*.yml
