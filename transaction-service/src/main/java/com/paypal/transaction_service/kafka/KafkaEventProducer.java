@@ -17,20 +17,20 @@ public class KafkaEventProducer {
 
     private static final String TOPIC = "txn-initiated";
 
-    private final KafkaTemplate<String, String> kafkaTemplate;
+    private final KafkaTemplate<String, Transaction> kafkaTemplate;
     private final ObjectMapper objectMapper;
 
     @Autowired
-    public KafkaEventProducer(KafkaTemplate<String, String> kafkaTemplate, ObjectMapper objectMapper) {
+    public KafkaEventProducer(KafkaTemplate<String, Transaction> kafkaTemplate, ObjectMapper objectMapper) {
         this.kafkaTemplate = kafkaTemplate;
         this.objectMapper = objectMapper;
         // Register module to handle Java 8 date/time serialization
         this.objectMapper.registerModule(new JavaTimeModule());
     }
-    public void sendTransactionEvent(String key, String transaction) {
+    public void sendTransactionEvent(String key, Transaction transaction) {
         System.out.println("📤 Sending to Kafka → Topic: " + TOPIC + ", Key: " + key + ", Message: " + transaction);
 
-        CompletableFuture<SendResult<String, String>> future = kafkaTemplate.send(TOPIC, key, transaction);
+        CompletableFuture<SendResult<String, Transaction>> future = kafkaTemplate.send(TOPIC, key, transaction);
 
         future.thenAccept(result -> {
             RecordMetadata metadata = result.getRecordMetadata();
