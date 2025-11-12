@@ -1,0 +1,15 @@
+package com.paypal.transaction_service.dto.dto;
+
+import lombok.Getter;
+import lombok.Setter;
+import lombok.NoArgsConstructor;
+
+/**
+ * CaptureRequest with getters, setters, no-args constructor
+ */
+@Getter
+@Setter
+@NoArgsConstructor
+public class CaptureRequest {
+    private String holdReference;
+}
